@@ -17,7 +17,7 @@ class ArkQRBuilder
      * @return QRCode
      * @throws \Exception
      */
-    public static function quickMakeMinimumQRInstance($data, $errorCorrectLevel)
+    public static function quickMakeMinimumQRInstance($data, $errorCorrectLevel = QRCode::QR_ERROR_CORRECT_LEVEL_L)
     {
         $qr = QRCode::getMinimumQRCode($data, $errorCorrectLevel);
         return $qr;
@@ -26,12 +26,13 @@ class ArkQRBuilder
 
     /**
      * @param string $data データ(文字列※)を設定 ※日本語はShiftJIS This might be data or string. Use ShiftJIS for Japanese.
+     * @param int $mode The data mode, See QRCode::QR_MODE_*
      * @param int $type 型番(大きさ)を設定 The scale of text, 1-40
      * @param int $errorCorrectLevel エラー訂正レベルを設定 See QRCode::QR_ERROR_CORRECT_LEVEL_[L|M|Q|H]
      * @return QRCode
      * @throws \Exception
      */
-    public static function makeQRInstance($data, $type = 4, $errorCorrectLevel = QRCode::QR_ERROR_CORRECT_LEVEL_L)
+    public static function makeQRInstance($data, $mode = QRCode::QR_MODE_AUTO_DETECT, $type = 4, $errorCorrectLevel = QRCode::QR_ERROR_CORRECT_LEVEL_L)
     {
         // エラー訂正レベルを設定
         // QR_ERROR_CORRECT_LEVEL_L : 7%
@@ -42,7 +43,7 @@ class ArkQRBuilder
         $qr = new QRCode();
         $qr->setErrorCorrectLevel($errorCorrectLevel);
         $qr->setTypeNumber($type);
-        $qr->addData($data);
+        $qr->addData($data, $mode);
         $qr->make();
         return $qr;
     }
