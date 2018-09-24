@@ -1,0 +1,24 @@
+{
+  "name": "sinri/ark-qr-builder",
+  "description": "The QR Builder components of Ark 2",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Sinri Edogawa",
+      "email": "e.joshua.s.e@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "ext-json": "*",
+    "ext-gd": "*",
+    "psr/log": "~1.0",
+    "sinri/ark-core": "~1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "sinri\\ark\\qr\\": "src/"
+    }
+  }
+}
